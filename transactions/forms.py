@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import formset_factory
 from .models import (
-    supplier, 
+    Supplier, 
     PurchaseBill, 
     PurchaseItem,
     PurchaseBillDetails, 
@@ -16,7 +16,7 @@ from inventory.models import Stock
 class SelectSupplierForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['supplier'].queryset = supplier.objects.filter(is_deleted=False)
+        self.fields['supplier'].queryset = Supplier.objects.filter(is_deleted=False)
         self.fields['supplier'].widget.attrs.update({'class': 'textinput form-control'})
     class Meta:
         model = PurchaseBill
@@ -52,7 +52,7 @@ class SupplierForm(forms.ModelForm):
         self.fields['phone'].widget.attrs.update({'class': 'textinput form-control', 'maxlength': '10', 'pattern' : '[0-9]{10}', 'title' : 'Numbers only'})
         self.fields['email'].widget.attrs.update({'class': 'textinput form-control'})
     class Meta:
-        model = supplier
+        model = Supplier
         fields = ['name', 'phone', 'address', 'email']
         widgets = {
             'address' : forms.Textarea(

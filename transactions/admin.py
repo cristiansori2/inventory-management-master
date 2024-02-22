@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import (
-    supplier, 
+    Supplier, 
     PurchaseBill, 
     PurchaseItem,
     PurchaseBillDetails, 
@@ -9,7 +9,7 @@ from .models import (
     SaleBillDetails
 )
 
-admin.site.register(supplier)
+admin.site.register(Supplier)
 admin.site.register(PurchaseBill)
 admin.site.register(PurchaseItem)
 admin.site.register(PurchaseBillDetails)
