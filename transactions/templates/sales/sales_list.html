@@ -9,9 +9,9 @@
 {% block content %}
     
     <div class="row" style="color: #ea2088; font-style: bold; font-size: 3rem;">
-        <div class="col-md-8">Sales List</div>
+        <div class="col-md-8">Lista de Ventas</div>
         <div class="col-md-4">               
-            <div style="float:right;"> <a class="btn ghost-blue" href="{% url 'new-sale' %}">New Outgoing Stock</a> </div>
+            <div style="float:right;"> <a class="btn ghost-blue" href="{% url 'new-sale' %}">Nueva venta</a> </div>
         </div>
     </div>
     
@@ -22,12 +22,12 @@
         <thead class="thead-inverse align-middle">
             <tr>
                 <th width="10%">Bill No</th>
-                <th width="15%">Customer</th>
-                <th width="15%">Stocks Sold</th>
-                <th width="10%">Quantity Sold</th>
-                <th width="10%">Total Sold Price</th>
-                <th width="15%">Sale Date</th>
-                <th width="25%">Options</th>
+                <th width="15%">Cliente</th>
+                <th width="15%">Prenda Vendida</th>
+                <th width="10%">Cantidad vendida</th>
+                <th width="10%">Precio total de venta</th>
+                <th width="15%">Fecha de Venta</th>
+                <th width="25%">Opciones</th>
             </tr>
         </thead>
 
@@ -79,7 +79,7 @@
     </table>
 
     <br><br><br><br><br><br><br><br>
-    <div style="color: #ea2088; font-style: bold; font-size: 1.5rem; text-align: center;">WOW, SUCH EMPTY</div>
+    <div style="color: #ea2088; font-style: bold; font-size: 1.5rem; text-align: center;">Vacio</div>
 
 {% endif %}
 

@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import (
     PurchaseBill, 
-    Supplier, 
+    supplier, 
     PurchaseItem,
     PurchaseBillDetails,
     SaleBill,  
@@ -31,51 +31,51 @@ from inventory.models import Stock
 
 # shows a lists of all suppliers
 class SupplierListView(ListView):
-    model = Supplier
+    model = supplier
     template_name = "suppliers/suppliers_list.html"
-    queryset = Supplier.objects.filter(is_deleted=False)
+    queryset = supplier.objects.filter(is_deleted=False)
     paginate_by = 10
 
 # used to add a new supplier
 class SupplierCreateView(SuccessMessageMixin, CreateView):
-    model = Supplier
+    model = supplier
     form_class = SupplierForm
     success_url = '/transactions/suppliers'
-    success_message = "Supplier has been created successfully"
+    success_message = "supplier has been created successfully"
     template_name = "suppliers/edit_supplier.html"
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'New Supplier'
-        context["savebtn"] = 'Add Supplier'
+        context["title"] = 'Nuevo Proveedor'
+        context["savebtn"] = 'Agregar'
         return context     
 
 # used to update a supplier's info
 class SupplierUpdateView(SuccessMessageMixin, UpdateView):
-    model = Supplier
+    model = supplier
     form_class = SupplierForm
     success_url = '/transactions/suppliers'
-    success_message = "Supplier details has been updated successfully"
+    success_message = "supplier details has been updated successfully"
     template_name = "suppliers/edit_supplier.html"
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'Edit Supplier'
+        context["title"] = 'Edit supplier'
         context["savebtn"] = 'Save Changes'
-        context["delbtn"] = 'Delete Supplier'
+        context["delbtn"] = 'Delete supplier'
         return context
 
 # used to delete a supplier
 class SupplierDeleteView(View):
     template_name = "suppliers/delete_supplier.html"
-    success_message = "Supplier has been deleted successfully"
+    success_message = "supplier has been deleted successfully"
 
     def get(self, request, pk):
-        supplier = get_object_or_404(Supplier, pk=pk)
+        supplier = get_object_or_404(supplier, pk=pk)
         return render(request, self.template_name, {'object' : supplier})
 
     def post(self, request, pk):  
-        supplier = get_object_or_404(Supplier, pk=pk)
+        supplier = get_object_or_404(supplier, pk=pk)
         supplier.is_deleted = True
         supplier.save()                                               
         messages.success(request, self.success_message)
@@ -84,7 +84,7 @@ class SupplierDeleteView(View):
 # used to view a supplier's profile
 class SupplierView(View):
     def get(self, request, name):
-        supplierobj = get_object_or_404(Supplier, name=name)
+        supplierobj = get_object_or_404(supplier, name=name)
         bill_list = PurchaseBill.objects.filter(supplier=supplierobj)
         page = request.GET.get('page', 1)
         paginator = Paginator(bill_list, 10)
@@ -121,7 +121,7 @@ class SelectSupplierView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             supplierid = request.POST.get("supplier")
-            supplier = get_object_or_404(Supplier, id=supplierid)
+            supplier = get_object_or_404(supplier, id=supplierid)
             return redirect('new-purchase', supplier.pk)
         return render(request, self.template_name, {'form': form})
 
@@ -131,7 +131,7 @@ class PurchaseCreateView(View):
 
     def get(self, request, pk):
         formset = PurchaseItemFormset(request.GET or None)                      # renders an empty formset
-        supplierobj = get_object_or_404(Supplier, pk=pk)                        # gets the supplier object
+        supplierobj = get_object_or_404(supplier, pk=pk)                        # gets the supplier object
         context = {
             'formset'   : formset,
             'supplier'  : supplierobj,
@@ -140,7 +140,7 @@ class PurchaseCreateView(View):
 
     def post(self, request, pk):
         formset = PurchaseItemFormset(request.POST)                             # recieves a post method for the formset
-        supplierobj = get_object_or_404(Supplier, pk=pk)                        # gets the supplier object
+        supplierobj = get_object_or_404(supplier, pk=pk)                        # gets the supplier object
         if formset.is_valid():
             # saves bill
             try:

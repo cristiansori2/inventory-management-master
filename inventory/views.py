@@ -28,8 +28,8 @@ class StockCreateView(SuccessMessageMixin, CreateView):                         
 
     def get_context_data(self, **kwargs):                                               # used to send additional context
         context = super().get_context_data(**kwargs)
-        context["title"] = 'New Stock'
-        context["savebtn"] = 'Add to Inventory'
+        context["title"] = 'Nueva Prenda'
+        context["savebtn"] = 'Adicionar al inventario'
         return context       
 
 
@@ -50,7 +50,7 @@ class StockUpdateView(SuccessMessageMixin, UpdateView):                         
 
 class StockDeleteView(View):                                                            # view class to delete stock
     template_name = "delete_stock.html"                                                 # 'delete_stock.html' used as the template
-    success_message = "Stock has been deleted successfully"                             # displays message when form is submitted
+    success_message = "Eliminado Correctamente"                             # displays message when form is submitted
     
     def get(self, request, pk):
         stock = get_object_or_404(Stock, pk=pk)

@@ -17,16 +17,15 @@
         {{ form.phone.errors }}
         {{ form.address.errors }}
         {{ form.email.errors }}
-        {{ form.gstin.errors }}
 
         <div class="form-group">
-            <label for="{{ form.name.id_for_label }}">Name:</label>
+            <label for="{{ form.name.id_for_label }}">Nombre:</label>
             {{ form.name }}
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="{{ form.phone.id_for_label }}">Phone No:</label>
+                <label for="{{ form.phone.id_for_label }}">Telefono:</label>
                 {{ form.phone }}
             </div>
             <div class="form-group col-md-6">
@@ -36,25 +35,22 @@
         </div>
 
         <div class="form-group">
-            <label for="{{ form.address.id_for_label }}">Address:</label>
+            <label for="{{ form.address.id_for_label }}">Direccion:</label>
             {{ form.address }}
         </div>
-        <div class="form-group">
-            <label for="{{ form.gstin.id_for_label }}">GSTIN No:</label>
-            {{ form.gstin }}
-        </div>
+        
 
         <br>
 
         <div class="align-middle">
             <button type="submit" class="btn ghost-green">{{ savebtn }}</button>
-            {% if title == "New Supplier" %}
+            {% if title == "New supplier" %}
                 <button type="reset" class="btn ghost-blue" >Reset</button>
             {% endif %}
             {% if delbtn %}
-                <a href="{% url 'delete-supplier' supplier.pk %}" class="btn ghost-red"> Delete Supplier </a>
+                <a href="{% url 'delete-supplier' supplier.pk %}" class="btn ghost-red"> Delete supplier </a>
             {% endif %}
-            <a href="{% url 'suppliers-list' %}" class="btn ghost-button">Cancel</a>
+            <a href="{% url 'suppliers-list' %}" class="btn ghost-button">Cancelar</a>
         </div>
         
     </form>

@@ -3,15 +3,15 @@
 {% load widget_tweaks %}
 
 
-{% block title %} Purchases List {% endblock title %}
+{% block title %} Lista de Compras {% endblock title %}
 
 
 {% block content %}
     
     <div class="row" style="color: #ea2088; font-style: bold; font-size: 3rem;">
-        <div class="col-md-8">Purchases List</div>
+        <div class="col-md-8">Lista de Compras</div>
         <div class="col-md-4">               
-            <div style="float:right;"> <a class="btn ghost-blue" href="{% url 'select-supplier' %}">New Incoming Stock</a> </div>
+            <div style="float:right;"> <a class="btn ghost-blue" href="{% url 'select-supplier' %}">Nueva Prenda entrante</a> </div>
         </div>
     </div>
 
@@ -21,13 +21,13 @@
 
         <thead class="thead-inverse align-middle">
             <tr>
-                <th width="10%">Bill No</th>
-                <th width="15%">Supplier</th>
-                <th width="15%">Stocks Purchased</th>
-                <th width="10%">Quantity Purchased</th>
-                <th width="15%">Total Purchased Price</th>
-                <th width="10%">Purchased Date</th>
-                <th width="25%">Options</th>
+                <th width="10%"># Factura</th>
+                <th width="15%">supplier</th>
+                <th width="15%">Objeto Comprado</th>
+                <th width="10%">Cantidad Comprada</th>
+                <th width="15%">Precio total de compra</th>
+                <th width="10%">Fecha de Compra</th>
+                <th width="25%">Opciones</th>
             </tr>
         </thead>
 
@@ -86,7 +86,7 @@
     </table>
 
     <br><br><br><br><br><br><br><br>
-    <div style="color: #ea2088; font-style: bold; font-size: 1.5rem; text-align: center;">WOW, SUCH EMPTY</div>
+    <div style="color: #ea2088; font-style: bold; font-size: 1.5rem; text-align: center;">Vacio</div>
 
 {% endif %}
 

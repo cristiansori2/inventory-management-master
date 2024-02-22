@@ -12,23 +12,20 @@
         <br>
 
         <div class="panel panel-default">
-            <div class="panel-heading panel-heading-text">Supplier Details</div>
+            <div class="panel-heading panel-heading-text">Detalles Proveedor</div>
             <div class="panel-body">
                     
                 <div class="form-group">
-                    <label for="id_name" class="panel-body-text">Supplier Name:</label>
+                    <label for="id_name" class="panel-body-text">Nombre Proveedor:</label>
                     <input type="text" class="form-control textinput" id="id_name" value="{{ supplier.name }}" disabled>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="id_phone" class="panel-body-text">Phone No:</label>
+                        <label for="id_phone" class="panel-body-text">Telefono:</label>
                         <input type="text" class="form-control textinput" id="id_phone" value="{{ supplier.phone }}" disabled>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="id_gstin" class="panel-body-text">GSTIN No:</label>
-                        <input type="gstin" class="form-control textinput" id="id_gstin" value="{{ supplier.gstin }}" disabled>
-                    </div>
+                   
                 </div>
 
             </div>
@@ -41,7 +38,7 @@
             {% csrf_token %}
             {{ formset.management_form }}
 
-            <div class="panel-heading panel-heading-text">Product Details</div>
+            <div class="panel-heading panel-heading-text">Detalles Producto</div>
             
                 <div id="stockitem"> 
                     <div class="panel-body">
@@ -49,20 +46,20 @@
                         <div class="row form-row clone-row">
                             <div class="form-group col-md-6">
                                 {{ form.stock.errors }}
-                                <label class="panel-body-text">Stock:</label>
+                                <label class="panel-body-text">Producto:</label>
                                 {{ form.stock }}
                             </div>
                             <div class="form-group col-md-2">
-                                <label class="panel-body-text">Price per item:</label>
+                                <label class="panel-body-text">Precio x producto:</label>
                                 {{ form.perprice }}
                             </div>
                             <div class="form-group col-md-2">
                                 {{ form.quantity.errors }}
-                                <label class="panel-body-text">Quantity:</label>
+                                <label class="panel-body-text">Cantidad:</label>
                                 {{ form.quantity }}
                             </div>
                             <div class="form-group col-md-1">
-                                <label class="panel-body-text">Price:</label>
+                                <label class="panel-body-text">Precio:</label>
                                 <input type="text" class="textinput form-control totalprice" value="1" disabled required>
                             </div>
                             <div class="form-group col-md-1">
@@ -72,7 +69,7 @@
                         </div>
                     {% endfor %}
                         <div style="text-align: right;">                    
-                            <a href="#" class="add-form-row">+ Add More</a>
+                            <a href="#" class="add-form-row">+ Adicionar mas</a>
                         </div>
                     </div>
                 </div>
@@ -83,7 +80,7 @@
             <div class="align-middle">
                 <button type="submit" class="btn ghost-green">Add to Purchases</button>
                 <a href="{% url 'select-supplier' %}" class="btn ghost-button">Go Back</a>
-                <a href="{% url 'purchases-list' %}" class="btn ghost-button">Cancel</a>
+                <a href="{% url 'purchases-list' %}" class="btn ghost-button">Cancelar</a>
             </div>
             
         </form>
