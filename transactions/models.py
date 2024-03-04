@@ -40,6 +40,8 @@ class PurchaseItem(models.Model):
     quantity = models.IntegerField(default=1)
     perprice = models.IntegerField(default=1)
     totalprice = models.IntegerField(default=1)
+    type = models.TextField(default='tarjeta')
+
 
     def __str__(self):
 	    return "Bill no: " + str(self.billno.billno) + ", Item = " + self.stock.name
@@ -69,10 +71,11 @@ class SaleBill(models.Model):
     billno = models.AutoField(primary_key=True)
     time = models.DateTimeField(auto_now=True)
 
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=50)
     phone = models.CharField(max_length=12)
-    address = models.CharField(max_length=200)
+    address = models.CharField(max_length=80)
     email = models.EmailField(max_length=254)
+    type=models.CharField(max_length=200)
 
     def __str__(self):
 	    return "Bill no: " + str(self.billno)
@@ -94,6 +97,7 @@ class SaleItem(models.Model):
     quantity = models.IntegerField(default=1)
     perprice = models.IntegerField(default=1)
     totalprice = models.IntegerField(default=1)
+    type = models.TextField(max_length=50,default='Tarjeta')
 
     def __str__(self):
 	    return "Bill no: " + str(self.billno.billno) + ", Item = " + self.stock.name

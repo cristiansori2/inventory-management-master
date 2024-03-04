@@ -22,5 +22,5 @@ python3 manage.py runserver
 ```
 Use the following command to create an admin user 
 ```
-python manage.py createsuperuser
+python3 manage.py createsuperuser
 ```

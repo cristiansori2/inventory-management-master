@@ -10,7 +10,7 @@
     
     <br>
     
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
     
         {% csrf_token %}
         {{ form.non_field_errors }}
@@ -20,10 +20,31 @@
             <label for="{{ form.name.id_for_label }}">Nombre:</label>
             {{ form.name }}
         </div>
+        <div class="form-group">
+            {{ form.name.errors }}
+            <label for="{{ form.description.id_for_label }}">Descripcion:</label>
+            {{ form.name }}
+        </div>
+       
+        <div class="form-group ">
+            {{ form.name.errors }}
+            <label for="{{ form.type.id_for_label }}">Tipo:</label>
+            {{ form.type }}
+        </div>
         <div class="form-group ">
             {{ form.quantity.errors }}
-            <label for="{{ form.quantity.id_for_label }}">Cantidad:</label>
-            {{ form.quantity }}
+            <label for="{{ form.weight.id_for_label }}">Peso:</label>
+            {{ form.weight }}
+        </div>
+        <div class="form-group ">
+            {{ form.quantity.errors }}
+            <label for="{{ form.kilate.id_for_label }}">Kilate:</label>
+            {{ form.kilate }}
+        </div>
+        <div class="form-group">
+            {{ form.picture.errors }}
+            <label for="{{ form.picture.id_for_label }}">Foto:</label>
+            {{ form.picture }}
         </div>
 
         <br>
@@ -34,7 +55,7 @@
                 <button type="reset" class="btn ghost-blue" >Reset</button>
             {% endif %}
             {% if delbtn %}
-                <a href="{% url 'delete-stock' object.pk %}" class="btn ghost-red"> Delete Stock </a>
+                <a href="{% url 'delete-stock' object.pk %}" class="btn ghost-red"> Borrar Joya </a>
             {% endif %}
             <a href="{% url 'inventory' %}" class="btn ghost-button">Cancelar</a>
         </div>

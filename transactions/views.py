@@ -277,13 +277,15 @@ class SaleCreateView(View):
                 billitem.totalprice = billitem.perprice * billitem.quantity
                 # updates quantity in stock db
                 stock.quantity -= billitem.quantity
+                if(stock.quantity == 0):
+                    stock.is_deleted = True
                 billdetailsobj.total += billitem.totalprice 
                 # saves bill item and stock
                 stock.save()
                 billitem.save()
 
-            billdetailsobj.save()
-            messages.success(request, "Sold items have been registered successfully")
+            billdetailsobj.save
+            messages.success(request, "Joya vendida! FELICIDADES!")
             return redirect('sale-bill', billno=billobj.billno)
         form = SaleForm(request.GET or None)
         formset = SaleItemFormset(request.GET or None)

@@ -1,3 +1,4 @@
+from datetime import date
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import (
     View,
@@ -21,16 +22,21 @@ class StockListView(FilterView):
 
 class StockCreateView(SuccessMessageMixin, CreateView):                                 # createview class to add new stock, mixin used to display message
     model = Stock                                                                       # setting 'Stock' model as model
-    form_class = StockForm                                                              # setting 'StockForm' form as form
+    form_class = StockForm 
     template_name = "edit_stock.html"                                                   # 'edit_stock.html' used as the template
     success_url = '/inventory'                                                          # redirects to 'inventory' page in the url after submitting the form
     success_message = "Prenda creada correctamente"                             # displays message when form is submitted
 
-    def get_context_data(self, **kwargs):                                               # used to send additional context
+    def form_valid(self, form):
+        form.instance.quantity = 1
+        form.instance.date = date.today()  # Set quantity to 1 regardless of user input
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = 'Nueva Prenda'
         context["savebtn"] = 'Adicionar al inventario'
-        return context       
+        return context    
 
 
 class StockUpdateView(SuccessMessageMixin, UpdateView):                                 # updateview class to edit stock, mixin used to display message
@@ -42,9 +48,9 @@ class StockUpdateView(SuccessMessageMixin, UpdateView):                         
 
     def get_context_data(self, **kwargs):                                               # used to send additional context
         context = super().get_context_data(**kwargs)
-        context["title"] = 'Edit Stock'
-        context["savebtn"] = 'Update Stock'
-        context["delbtn"] = 'Delete Stock'
+        context["title"] = 'Editar Joya'
+        context["savebtn"] = 'Actualizar Joya'
+        context["delbtn"] = 'Borrar Joya'
         return context
 
 
