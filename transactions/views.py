@@ -221,7 +221,8 @@ class SaleView(ListView):
     paginate_by = 10
 
 # used to generate a bill object and save items
-class SaleCreateView(View):                                                      
+class SaleCreateView(View): 
+    print('aaaaaaaaaa')                                                     
     template_name = 'sales/new_sale.html'
 
     def get(self, request):
@@ -234,10 +235,18 @@ class SaleCreateView(View):
             'stocks'    : stocks
         }
         return render(request, self.template_name, context)
+    
 
     def post(self, request):
         form = SaleForm(request.POST)
-        formset = SaleItemFormset(request.POST)                                 # recieves a post method for the formset
+        formset = SaleItemFormset(request.POST)
+        formset.quantity = 1
+        if formset.is_valid() == False:
+            print(formset.errors)
+            
+        
+        
+                                      # recieves a post method for the formset
         if form.is_valid() and formset.is_valid():
             # saves bill
             try:

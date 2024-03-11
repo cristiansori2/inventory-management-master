@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block title %} Delete Stock {% endblock title %}
+
+
+{% block content %}
+                
+    <form method="post">
+        
+        {% csrf_token %}
+        
+        <fieldset class="form-group">
+            <div style="color:#ea2088; font-style: bold; font-size: 3rem; border-bottom: 1px solid white;">Devolver a Inventario</div> <br>
+            <h2>Esta prenda volvera al Inventario porque no pudo ser vendida.</h2>
+        </fieldset>
+
+        <div class="form-group">  
+            <button type="submit" class="btn ghost-red">Si, Devolver</button>
+            <a href="{% url 'apartados' %}" class="btn ghost-button">Cancelar</a>
+        </div>
+        
+    </form>
+
+{% endblock content %}

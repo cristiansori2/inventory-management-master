@@ -71,10 +71,24 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="#apartadosSubmenu" data-toggle="collapse" class="dropdown-toggle sidebar-text right-arrow sidebar-button">Apartados</a>
+                    <ul class="collapse list-unstyled" id="apartadosSubmenu">
+                        <li> <a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'apartados' %}">Lista de Apartados</a> </li>
+                    </ul>
+                </li>
+                <li>
+
                     <a href="#supplierSubmenu" data-toggle="collapse" class="dropdown-toggle sidebar-text right-arrow sidebar-button">Suplidores</a>
                     <ul class="collapse list-unstyled" id="supplierSubmenu">
                         <li> <a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'suppliers-list' %}">Lista de Suplidores</a> </li>
                         <li> <a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'new-supplier' %}">Adicionar nuevo suplidor</a> </li>
+                    </ul>
+                </li>
+                <li>
+
+                    <a href="#eliminadosSubmenu" data-toggle="collapse" class="dropdown-toggle sidebar-text right-arrow sidebar-button">Eliminados</a>
+                    <ul class="collapse list-unstyled" id="eliminadosSubmenu">
+                        <li> <a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'eliminados-list' %}">Lista de Eliminados</a> </li>
                     </ul>
                 </li>
              

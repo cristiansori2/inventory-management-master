@@ -3,16 +3,14 @@
 {% load widget_tweaks %}
 
 
-{% block title %} Inventory List {% endblock title %}
+{% block title %} Lista de Apartados {% endblock title %}
 
 
 {% block content %}
     
     <div class="row" style="color: #ea2088; font-style: bold; font-size: 3rem; ">
-        <div class="col-md-8">Lista de inventario</div>
-        <div class="col-md-4">               
-            <div style="float:right;"> <a class="btn ghost-blue" href="{% url 'new-stock' %}">Adicionar nueva prenda</a> </div>
-        </div>
+        <div class="col-md-8">Lista de Apartados</div>
+       
     </div>
     
     <div style="border-bottom: 1px solid white;"></div>
@@ -34,15 +32,11 @@
         
         <thead class="thead-inverse align-middle">
             <tr>
-                <th width="10%">Nombre de Joya</th>
+                <th width="10%">Prenda</th>
+                <th width="10%">Cliente</th>
                 <th width="10%">Precio</th>
-                <th width="20%">Tipo</th>
-                <th width="20%">Peso</th>
-                <th width="20%">Kilate</th>
-                <th width="20%">Fecha</th>
-                <th width="20%">Foto</th>
-                <th width="20%">Descripcion</th>
                 <th width="20%">SKU #</th>
+                <th width="20%">Fecha Apartado</th>
                 <!-- <th width="20%">Cantidad</th> -->
                 <th width="30%">Opciones</th>
             </tr>
@@ -53,26 +47,14 @@
         <tbody>         
             {% for stock in object_list %}
                     <td class="align-middle" >{{ stock.name }}</td>
-                    <td class="align-middle" >{{ stock.price }}</td>
-                    
-                    <td class="align-middle" >{{ stock.type }}</td>
-                    <td class="align-middle">{{ stock.weight }}g</td>
-                    <td class="align-middle">{{ stock.kilate }}</td>
-                    <td class="align-middle">{{ stock.date }}</td>
-                    <td class="align-middle">
-                        {% if stock.picture %}
-                            <img src="{{ stock.picture.url }}" alt="{{ stock.name }}" style="width: 100px; height: auto;">
-                        {% else %}
-                            No Foto 
-                        {% endif %}
-                    </td>
-                    <td class="align-middle">{{ stock.description }}</td>
+                    <td class="align-middle" >{{ stock.apartadoPor }}</td>
+                    <td class="align-middle" >{{ stock.precioApartado }}</td>
                     <td class="align-middle">{{ stock.sku }}</td>
+                    <td class="align-middle">{{ stock.fechaApartado }}</td>
                     <!-- <td class="align-middle">{{ stock.quantity }}</td> -->
                     <td class="align-middle">
-                        <a href="{% url 'edit-stock' stock.pk %}" class="btn ghost-button">Editar detalles</a>
-                        <a href="{% url 'apartar-stock' stock.pk %}" class="btn ghost-button">Apartar</a>
-                        <a href="{% url 'delete-stock' stock.pk %}" class="btn ghost-red"> Eliminar</a>
+                        <!-- <a href="{% url 'apartar-stock' stock.pk %}" class="btn ghost-button">Apartar</a> -->
+                        <a href="{% url 'delete-apartado' stock.pk %}" class="btn ghost-red"> Devolver a Inventario</a>
                     </td>          
                 </tr>
             {% endfor %}                   
