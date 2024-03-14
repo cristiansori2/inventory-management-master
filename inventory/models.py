@@ -6,7 +6,7 @@ class Stock(models.Model):
     name = models.CharField(max_length=30, unique=False, verbose_name='Nombre')
     quantity = models.IntegerField(default=1)
     type = models.CharField(max_length=30, unique=False, verbose_name='Tipo')
-    weight = models.IntegerField(default=1)
+    weight = models.FloatField(default=1.0)
     kilate = models.IntegerField(default=1)
     date = models.DateField(default='2024-01-01')
     picture = models.ImageField(upload_to='stock_images/', blank=True, null=True)

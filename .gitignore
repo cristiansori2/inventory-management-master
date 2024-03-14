@@ -147,3 +147,22 @@ dmypy.json
 major project.code-workspace
 
 # End of https://www.gitignore.io/api/django
+bin/activate.csh
+bin/activate
+bin/epylint
+bin/isort
+bin/pip
+bin/pip3
+bin/pip3.12
+bin/pylint
+bin/pyreverse
+bin/python
+bin/python3
+bin/python3.12
+bin/sqlformat
+bin/symilar
+bin/virtualenv
+bin/django-admin
+bin/activate.fish
+pyvenv.cfg
+bin/Activate.ps1

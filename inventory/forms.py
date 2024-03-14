@@ -11,6 +11,16 @@ class StockForm(forms.ModelForm):
         ('Dijes', 'Dijes')
     ];
     type = forms.ChoiceField(choices=TYPE_CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
+    def clean_sku(self):
+        sku = self.cleaned_data['sku']
+        # Adjust the query to exclude the current instance from the uniqueness check
+        if self.instance and self.instance.pk:
+            if Stock.objects.filter(sku=sku).exclude(pk=self.instance.pk).exists():
+                raise forms.ValidationError("This SKU already exists.")
+        else:
+            if Stock.objects.filter(sku=sku).exists():
+                raise forms.ValidationError("This SKU already exists.")
+        return sku
 
     
 
@@ -44,7 +54,7 @@ class StockForm(forms.ModelForm):
         self.fields['is_deleted'].initial = False 
 
 
-
+   
 
     class Meta:
         model = Stock
