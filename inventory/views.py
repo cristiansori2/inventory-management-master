@@ -1,4 +1,5 @@
 from datetime import date
+from io import BytesIO
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import (
     View,
@@ -11,6 +12,8 @@ from .models import Stock
 from .forms import StockForm
 from django_filters.views import FilterView
 from .filters import StockFilter
+from PIL import Image
+from django.core.files import File
 
 
 class StockListView(FilterView):
@@ -43,10 +46,29 @@ class StockCreateView(SuccessMessageMixin, CreateView):                         
     success_message = "Prenda creada correctamente"                             # displays message when form is submitted
 
     def form_valid(self, form):
+        if 'picture' in form.cleaned_data and form.cleaned_data['picture']:
+            # Reduce image resolution
+            image_field = form.cleaned_data['picture']
+            image_file = BytesIO(image_field.read())
+            image = Image.open(image_file)
+             # If the image has an alpha channel, convert it to RGB
+            if image.mode in ("RGBA", "LA"):
+                # Convert to RGB
+                image = image.convert("RGB")
+            # resize - you can adjust the size as per your requirement
+            image = image.resize((500, 500), Image.Resampling.LANCZOS)
+
+            # Save the resized image to a BytesIO object
+            image_io = BytesIO()
+            image.save(image_io, format='JPEG', quality=60)  # Adjust format and quality as needed
+
+            # Create a new Django file-like object to save to the model
+            image_file = File(image_io, name=image_field.name)
+            form.instance.picture = image_file
+       
         form.instance.telefono = ''
         form.instance.apartadoPor = ''
-        form.instance.precioApartado = 0
-
+        form.instance.precioApartado = 0        
         form.instance.quantity = 1
         form.instance.date = date.today()
         form.instance.is_deleted = False
@@ -68,7 +90,8 @@ class StockUpdateView(SuccessMessageMixin, UpdateView):                         
     form_class = StockForm                                                              # setting 'StockForm' form as form
     template_name = "edit_stock.html"                                                   # 'edit_stock.html' used as the template
     success_url = '/inventory'                                                          # redirects to 'inventory' page in the url after submitting the form
-    success_message = "Stock has been updated successfully"              
+    success_message = "Stock has been updated successfully"
+                  
     
                    # displays message when form is submitted
 
