@@ -1,15 +1,18 @@
+/* Sidebar Text Styles */
 .sidebar-text, .sidebar-text:hover, .sidebar-text:focus {
-    color: inherit;
+    color: #f4f4f4; /* Light color for contrast against the dark background */
     text-decoration: none;
-    transition: all 0.3s;
+    transition: color 0.3s ease-in-out;
 }
 
+/* Main Wrapper */
 #wrapper {
     display: flex;
     width: 100%;
     align-items: stretch;
 }
 
+/* Sidebar Styles */
 #sidebar {
     width: 250px;
     position: fixed;
@@ -17,30 +20,35 @@
     left: 0;
     height: 100vh;
     z-index: 999;
-    background: #4F102B;
-    color: #fff;
+    background: #34495e; /* Dark slate for the background */
+    color: #f4f4f4; /* Light color for text for contrast */
     transition: all 0.3s;
 }
 
+/* Sidebar Active State */
 .sidebar.active {
     margin-left: -250px;
 }
 
+/* Sidebar Header */
 .sidebar-header {
     padding: 20px;
-    background: #4F102B;
+    background: #2c3e50; /* Slightly darker shade for header to differentiate */
 }
 
+/* Sidebar Components Style */
 .sidebar-components {
     padding: 20px 0;
-    border-bottom: 1px solid #4F102B;
+    border-bottom: 1px solid #4b7bec; /* Blue for a pop of color */
 }
 
+/* Sidebar Paragraph (if used) */
 .sidebar-paragraph {
-    color: #fff;
+    color: #f4f4f4;
     padding: 10px;
 }
 
+/* Dropdown Toggle */
 .dropdown-toggle::after {
     display: block;
     position: absolute;
@@ -49,27 +57,35 @@
     transform: translateY(-50%);
 }
 
+/* Right Arrow for Dropdown */
 a.right-arrow[data-toggle="collapse"] {
     position: relative;
 }
 
+/* Sidebar Button */
 .sidebar-button {
     padding: 10px;
     font-size: 1.1em;
     display: block;
+    color: #f4f4f4; /* Ensure readability */
+    background-color: transparent; /* Clear background */
 }
 
+/* Sidebar Button Hover Effect */
 .sidebar-button:hover {
-    color: #4F102B;
-    background: #fff;
+    color: #34495e; /* Dark color for contrast */
+    background: #4b7bec; /* Bright blue for hover */
 }
 
+/* Sidebar Subitem */
 .sidebar-subitem {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #69163a;
+    background: #34495e; /* Maintain the sidebar color */
+    color: #bdc3c7; /* Slightly lighter shade for distinction */
 }
 
+/* Sidebar Call-to-Action Styles */
 ul.CTAs {
     padding: 20px;
 }
@@ -80,13 +96,17 @@ ul.CTAs a {
     display: block;
     border-radius: 5px;
     margin-bottom: 5px;
+    background: #4b7bec; /* Bright blue for visibility */
+    color: #f4f4f4; /* Light color for contrast */
 }
 
+/* Navigation Button */
 a.nav-button {
-    background: #fff;
-    color: #4F102B;
+    background: #4b7bec; /* Bright blue for visibility */
+    color: #f4f4f4; /* Light color for contrast */
 }
 
+/* Positioning for Bottom Left Elements */
 .bottomleft {
     bottom: 0;
     position: absolute;
@@ -94,10 +114,7 @@ a.nav-button {
     max-width: 250px;
 }
 
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-
+/* Content Style for Padding Adjustment */
 #content {
     width: 100%;
     margin-left: 250px;
@@ -106,10 +123,7 @@ a.nav-button {
     transition: all 0.3s;
 }
 
-/* ---------------------------------------------------
-    MEDIAQUERIES
------------------------------------------------------ */
-
+/* Responsive Design Adjustments */
 @media (max-width: 768px) {
     #sidebar {
         margin-left: -250px;

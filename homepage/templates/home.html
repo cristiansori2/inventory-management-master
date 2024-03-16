@@ -8,16 +8,16 @@
 
 {% block content %}
 
-    <div style="color:#ea2088; font-style: bold; font-size: 3rem; border-bottom: 1px solid #fff">Bienvenido, {{ request.user.username }}</div>
+    <div style="color:#63ea20; font-style: bold; font-size: 3rem; border-bottom: 1px solid #fff">Bienvenido, {{ request.user.username }}</div>
 
     <br>
 
-    <div id="container" style="position: relative; height:45vh; border: 2mm ridge #4F102B; border-radius: 30px;" class="align-middle table-bordered">
+    <div id="container" style="position: relative; height:45vh; border: 2mm ridge #244f10; border-radius: 30px;" class="align-middle table-bordered">
         <canvas id="bar-graph"></canvas>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div style="color:#ea2088; font-style: bold; font-size: 1.3em; border-bottom: 2px solid #fff">Peso total por tipo</div>
+            <div style="color:#20ea3b; font-style: bold; font-size: 1.3em; border-bottom: 2px solid #fff">Peso total por tipo</div>
             <br>
             <table class="table table-dark table-hover">
                 <thead>
@@ -58,7 +58,7 @@
         <div class="row">
 
             <div class="col-md-6">
-                <div style="color:#ea2088; font-style: bold; font-size: 1.3em; border-bottom: 2px solid #fff">Ventas mas recientes</div><br>
+                <div style="color:#3eea20; font-style: bold; font-size: 1.3em; border-bottom: 2px solid #fff">Ventas mas recientes</div><br>
                 {% for item in sales %}
                     {% if not forloop.first %}
                         <br><div style="border-bottom: 0.5px solid #fff"></div><br>
