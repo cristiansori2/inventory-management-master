@@ -37,6 +37,44 @@ class ApartadoslistView(FilterView):
     template_name = 'apartados.html'
     paginate_by = 10
 
+class CadenaslistView(FilterView):
+    filterset_class = StockFilter
+    queryset = Stock.objects.filter(is_deleted=False,type='Cadenas')
+    template_name = 'cadenas.html'
+    paginate_by = 10
+
+class AnilloslistView(FilterView):
+    filterset_class = StockFilter
+    queryset = Stock.objects.filter(is_deleted=False,type='Anillos')
+    template_name = 'cadenas.html'
+    paginate_by = 10
+
+class AreteslistView(FilterView):
+    filterset_class = StockFilter
+    queryset = Stock.objects.filter(is_deleted=False,type='Aretes')
+    template_name = 'cadenas.html'
+    paginate_by = 10
+
+
+class PulsoslistView(FilterView):
+    filterset_class = StockFilter
+    queryset = Stock.objects.filter(is_deleted=False,type='Pulsos')
+    template_name = 'cadenas.html'
+    paginate_by = 10
+
+class DijeslistView(FilterView):
+    filterset_class = StockFilter
+    queryset = Stock.objects.filter(is_deleted=False,type='Dijes')
+    template_name = 'cadenas.html'
+    paginate_by = 10
+
+
+class PiercinglistView(FilterView):
+    filterset_class = StockFilter
+    queryset = Stock.objects.filter(is_deleted=False,type='Piercing')
+    template_name = 'cadenas.html'
+    paginate_by = 10
+
 
 class StockCreateView(SuccessMessageMixin, CreateView):                               # createview class to add new stock, mixin used to display message
     model = Stock                                                                       # setting 'Stock' model as model
