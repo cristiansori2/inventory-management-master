@@ -1,4 +1,6 @@
 from datetime import date
+from django.db.models import Sum
+
 from io import BytesIO
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import (
@@ -36,6 +38,25 @@ class ApartadoslistView(FilterView):
     queryset = Stock.objects.filter(is_deleted=False,isApartado = True)
     template_name = 'apartados.html'
     paginate_by = 10
+
+
+class ApartadosListalistView(View):
+    template_name = "apartados_lista.html"
+
+    def get(self, request):
+        stock_types = ['Cadenas', 'Pulsos', 'Anillos', 'Aretes', 'Piercing', 'Dijes']
+        data = {}
+
+        for stock_type in stock_types:
+            quantity_sum = Stock.objects.filter(type=stock_type, is_deleted=False, isApartado=True).aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
+            data[stock_type] = quantity_sum
+
+        context = {'data': data}
+        return render(request, self.template_name, context)
+
+
+
+
 
 class CadenaslistView(FilterView):
     filterset_class = StockFilter
@@ -148,6 +169,10 @@ class StockApartarView(SuccessMessageMixin, UpdateView):                        
     success_message = "La prenda ha sido apartada" 
     
     def form_valid(self, form):
+        current_instance = Stock.objects.get(pk=form.instance.pk)
+        form.instance.type = current_instance.type
+        form.instance.description = current_instance.description
+
 
         form.instance.quantity = 1
         form.instance.isApartado = True

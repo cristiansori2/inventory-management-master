@@ -17,12 +17,12 @@ class HomeView(View):
 
 
 
-        Cadenas_sum = Stock.objects.filter(type='Cadenas', is_deleted=False).aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
-        Pulsos_sum = Stock.objects.filter(type='Pulsos', is_deleted=False).aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
-        Anillos_sum = Stock.objects.filter(type='Anillos', is_deleted=False).aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
-        Aretes_sum = Stock.objects.filter(type='Aretes', is_deleted=False).aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
-        Piercing_sum = Stock.objects.filter(type='Piercing', is_deleted=False).aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
-        Dijes_sum = Stock.objects.filter(type='Dijes', is_deleted=False).aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
+        Cadenas_sum = Stock.objects.filter(type='Cadenas', is_deleted=False,isApartado = False).aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
+        Pulsos_sum = Stock.objects.filter(type='Pulsos', is_deleted=False,isApartado = False).aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
+        Anillos_sum = Stock.objects.filter(type='Anillos', is_deleted=False,isApartado = False).aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
+        Aretes_sum = Stock.objects.filter(type='Aretes', is_deleted=False,isApartado = False).aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
+        Piercing_sum = Stock.objects.filter(type='Piercing', is_deleted=False,isApartado = False).aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
+        Dijes_sum = Stock.objects.filter(type='Dijes', is_deleted=False,isApartado = False).aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
         data.append(Cadenas_sum)
         data.append(Pulsos_sum)
         data.append(Anillos_sum)
@@ -36,8 +36,8 @@ class HomeView(View):
         sales = SaleBill.objects.order_by('-time')[:3]
         purchases = PurchaseBill.objects.order_by('-time')[:3]
         for stock_type in labels:
-            matching_stocks = Stock.objects.filter(type=stock_type, is_deleted=False)
-            total_weight = Stock.objects.filter(type=stock_type, is_deleted=False).aggregate(Sum('weight'))['weight__sum'] or 0
+            matching_stocks = Stock.objects.filter(type=stock_type, is_deleted=False,isApartado = False)
+            total_weight = Stock.objects.filter(type=stock_type, is_deleted=False,isApartado = False).aggregate(Sum('weight'))['weight__sum'] or 0
             total_count = matching_stocks.count()  # Count of items per type
 
             weight_data[stock_type] = total_weight
