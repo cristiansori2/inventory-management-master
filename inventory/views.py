@@ -172,6 +172,7 @@ class StockApartarView(SuccessMessageMixin, UpdateView):                        
         current_instance = Stock.objects.get(pk=form.instance.pk)
         form.instance.type = current_instance.type
         form.instance.description = current_instance.description
+        form.instance.weight = current_instance.weight
 
 
         form.instance.quantity = 1
