@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import formset_factory
+from django.forms import ModelChoiceField, formset_factory
 from .models import (
     Supplier, 
     PurchaseBill, 
@@ -84,27 +84,29 @@ class SaleForm(forms.ModelForm):
                 }
             )
         }
-
+class SKUModelChoiceField(ModelChoiceField):
+    def label_from_instance(self, obj):
+        # Return the SKU field of the Stock object for the dropdown label
+        return obj.sku
 # form used to render a single stock item form
 class SaleItemForm(forms.ModelForm):
+    stock = SKUModelChoiceField(queryset=Stock.objects.filter(is_deleted=False))
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['stock'].queryset = Stock.objects.filter(is_deleted=False)
         self.fields['stock'].widget.attrs.update({'class': 'textinput form-control setprice stock', 'required': 'true'})
-        self.fields['type'].required = False  # Set initial value to 1
-        self.fields['type'].initial = 'Cadena'  # Set initial value to 1
-
-        self.fields['type'].widget.attrs.update({'class': 'textinput form-control', 'pattern' : '[a-zA-Z\s]{1,50}', 'title' : 'Alphabets and Spaces only', 'required': 'true'})
-        self.fields['quantity'].initial = 1  # Set initial value to 1
-        self.fields['quantity'].required = False  # Set initial value to 1
-
-
+        self.fields['type'].required = False
+        self.fields['type'].initial = 'Cadena'
+        self.fields['type'].widget.attrs.update({'class': 'textinput form-control', 'pattern': '[a-zA-Z\s]{1,50}', 'title': 'Alphabets and Spaces only', 'required': 'true'})
+        self.fields['quantity'].initial = 1
+        self.fields['quantity'].required = False
         self.fields['quantity'].widget.attrs.update({'class': 'textinput form-control setprice quantity', 'min': '0', 'required': 'false'})
         self.fields['perprice'].widget.attrs.update({'class': 'textinput form-control setprice price', 'min': '0', 'required': 'true'})
         
     class Meta:
         model = SaleItem
-        fields = ['stock', 'quantity', 'perprice','type']
+        fields = ['stock', 'quantity', 'perprice', 'type']
+
 
 # formset used to render multiple 'SaleItemForm' 
 SaleItemFormset = formset_factory(SaleItemForm, extra=1)

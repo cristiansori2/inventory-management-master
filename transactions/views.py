@@ -281,7 +281,7 @@ class SaleCreateView(View):
                 billitem = form.save(commit=False)
                 billitem.billno = billobj                                       # links the bill object to the items
                 # gets the stock item
-                stock = get_object_or_404(Stock, name=billitem.stock.name)      
+                stock = get_object_or_404(Stock, sku=billitem.stock.sku)      
                 # calculates the total price
                 billitem.totalprice = billitem.perprice * billitem.quantity
                 # updates quantity in stock db
